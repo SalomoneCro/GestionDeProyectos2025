@@ -1,0 +1,66 @@
+# --- Python bytecode / cache ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Entornos virtuales ---
+.venv/
+venv/
+env/
+.conda/
+.venv*/
+venv*/
+env*/
+
+# --- Paquetes y build ---
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# --- Tests / cobertura ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# --- Herramientas de análisis ---
+.mypy_cache/
+.pytype/
+.ruff_cache/
+.pyre/
+.dmypy.json
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+
+# --- Configs locales / IDE ---
+.vscode/
+.idea/
+.spyproject/
+*.code-workspace
+
+# --- Archivos temporales / sistema ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.orig
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Variables de entorno / credenciales (ajusta según tu proyecto) ---
+.env
+.env.*
+*.env
+*.secret
+secrets.toml
+
+# --- Datos locales (opcional; descomenta si aplica) ---
+data/processed/*
+data/raw/*
