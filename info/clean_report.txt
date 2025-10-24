@@ -1,0 +1,59 @@
+=== Data Cleaning Report ===
+
+Raw shape                : 4000 rows x 51 cols
+Duplicates removed       : 0
+Cleaned shape            : 4000 rows x 51 cols
+
+Total missing values     : 4190
+Missing values by column :
+  - Budget_Utilization_Rate         : 0
+  - Change_Control_Maturity         : 780
+  - Change_Request_Frequency        : 0
+  - Client_Experience_Level         : 0
+  - Communication_Frequency         : 0
+  - Complexity_Score                : 0
+  - Contract_Type                   : 0
+  - Cross_Functional_Dependencies   : 0
+  - Current_Phase_Duration_Months   : 0
+  - Data_Security_Requirements      : 0
+  - Documentation_Quality           : 0
+  - Estimated_Timeline_Months       : 0
+  - Executive_Sponsorship           : 0
+  - External_Dependencies_Count     : 0
+  - Funding_Source                  : 0
+  - Geographical_Distribution       : 0
+  - Historical_Risk_Incidents       : 0
+  - Industry_Volatility             : 0
+  - Integration_Complexity          : 0
+  - Key_Stakeholder_Availability    : 0
+  - Market_Volatility               : 0
+  - Methodology_Used                : 0
+  - Org_Process_Maturity            : 0
+  - Organizational_Change_Frequency : 0
+  - Past_Similar_Projects           : 0
+  - Previous_Delivery_Success_Rate  : 0
+  - Priority_Level                  : 0
+  - Project_Budget_USD              : 0
+  - Project_ID                      : 0
+  - Project_Manager_Experience      : 0
+  - Project_Phase                   : 0
+  - Project_Start_Month             : 0
+  - Project_Type                    : 0
+  - Regulatory_Compliance_Level     : 0
+  - Requirement_Stability           : 0
+  - Resource_Availability           : 0
+  - Resource_Contention_Level       : 0
+  - Risk_Level                      : 0
+  - Risk_Management_Maturity        : 791
+  - Schedule_Pressure               : 0
+  - Seasonal_Risk_Factor            : 0
+  - Stakeholder_Count               : 0
+  - Stakeholder_Engagement_Level    : 0
+  - Team_Colocation                 : 0
+  - Team_Experience_Level           : 0
+  - Team_Size                       : 0
+  - Team_Turnover_Rate              : 0
+  - Tech_Environment_Stability      : 2619
+  - Technical_Debt_Level            : 0
+  - Technology_Familiarity          : 0
+  - Vendor_Reliability_Score        : 0
