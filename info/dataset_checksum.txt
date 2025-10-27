@@ -1,0 +1,7 @@
+=== Dataset Parquet Export ===
+
+Source CSV : project_risk_clean.csv
+Output file: train_ready.parquet
+Rows       : 4000
+Columns    : 51
+Checksum (SHA-256): 6062e118c22cba1379ec82fba71182d80ca78ea3525bd72be73d785068fb618d
