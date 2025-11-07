@@ -1,9 +1,10 @@
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Sequence, Union
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 import numpy as np
 import pandas as pd
-from sklearn.base import ClassifierMixin
+from sklearn.base import ClassifierMixin, clone
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from sklearn.model_selection import StratifiedKFold, cross_validate
 
 
@@ -69,18 +70,20 @@ class CrossValidation:
 
     def __init__(
         self,
-        X: Union[pd.DataFrame, np.ndarray],
-        y: Union[pd.Series, np.ndarray],
+        X: Union[pd.DataFrame, np.ndarray] | None = None,
+        y: Union[pd.Series, np.ndarray] | None = None,
         n_splits: int = 5,
         shuffle: bool = True,
         random_state: Optional[int] = None,
         scoring: Optional[ScoringType] = None,
+        n_jobs: int = -1,
     ) -> None:
         self.X = X
         self.y = y
         self.n_splits = n_splits
         self.shuffle = shuffle
         self.random_state = random_state
+        self.n_jobs = n_jobs
 
         if scoring is None:
             scoring = (
@@ -130,7 +133,7 @@ class CrossValidation:
             y=self.y,
             cv=cv,
             scoring=self.scoring,
-            n_jobs=-1,
+            n_jobs=self.n_jobs,
             return_train_score=False,
         )
 
@@ -144,6 +147,54 @@ class CrossValidation:
                 for key, value in cv_results.items()
                 if key.startswith("test_")
             },
+            summary=summary,
+        )
+
+    def evaluate_precomputed(
+        self,
+        model: ClassifierMixin,
+        folds: Sequence[Tuple[Any, Any, Any, Any]],
+        scoring: str = "recall_weighted",
+        fit_params_per_fold: Optional[Sequence[Optional[Dict[str, Any]]]] = None,
+    ) -> CrossValidationResult:
+        def _compute_metric(y_true: Any, y_pred: Any, name: str) -> float:
+            if name == "recall_weighted":
+                return float(recall_score(y_true, y_pred, average="weighted"))
+            raise ValueError(f"Unsupported scoring: {name}")
+
+        scores: List[float] = []
+
+        if fit_params_per_fold is not None and len(fit_params_per_fold) != len(folds):
+            raise ValueError("fit_params_per_fold length must match folds length")
+
+        for i, (X_tr, y_tr, X_val, y_val) in enumerate(folds):
+            est = clone(model)
+            fit_kwargs = None
+            if fit_params_per_fold is not None:
+                fit_kwargs = fit_params_per_fold[i] or {}
+            else:
+                fit_kwargs = {}
+
+            est.fit(X_tr, y_tr, **fit_kwargs)
+            y_pred = est.predict(X_val)
+            score = _compute_metric(y_val, y_pred, scoring)
+            print(f"Score: {score}")
+            scores.append(score)
+
+        scores_arr = np.asarray(scores, dtype=float)
+
+        metric_key = f"test_{scoring}"
+        summary = {
+            scoring: {
+                "mean": float(scores_arr.mean()),
+                "std": float(scores_arr.std(ddof=1)) if len(scores_arr) > 1 else 0.0,
+            }
+        }
+
+        return CrossValidationResult(
+            n_splits=len(folds),
+            scoring=[scoring],
+            raw_scores={metric_key: scores_arr},
             summary=summary,
         )
 

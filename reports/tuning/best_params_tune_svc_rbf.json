@@ -1,0 +1,12 @@
+{
+  "study": "tune_svc_rbf",
+  "model": "svc_rbf",
+  "best_recall_weighted": 0.7644973462256118,
+  "recall_std": 0.009928733853034924,
+  "params": {
+    "svc_C": 68.92935673984583,
+    "svc_gamma": 0.0016715801945608576,
+    "svc_class_weight": null
+  },
+  "n_trials": 544
+}

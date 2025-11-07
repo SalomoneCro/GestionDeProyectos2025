@@ -1,0 +1,18 @@
+{
+  "study": "tune_xgb",
+  "model": "xgb",
+  "best_recall_weighted": 0.7090068994010122,
+  "recall_std": 0.02413746329608991,
+  "params": {
+    "xgb_n_estimators": 554,
+    "xgb_lr": 0.2126806177041667,
+    "xgb_max_depth": 3,
+    "xgb_min_child_weight": 5.666313691995679,
+    "xgb_gamma": 0.010612600723117704,
+    "xgb_subsample": 0.7901374044902558,
+    "xgb_colsample_bytree": 0.9553589966573294,
+    "xgb_reg_lambda": 5.984257319344325,
+    "xgb_reg_alpha": 2.809212645023934
+  },
+  "n_trials": 141
+}

@@ -1,0 +1,3 @@
+study,model,best_recall_weighted,recall_std,params,n_trials
+tune_xgb,xgb,0.7090068994010122,0.02413746329608991,"{'xgb_n_estimators': 554, 'xgb_lr': 0.2126806177041667, 'xgb_max_depth': 3, 'xgb_min_child_weight': 5.666313691995679, 'xgb_gamma': 0.010612600723117704, 'xgb_subsample': 0.7901374044902558, 'xgb_colsample_bytree': 0.9553589966573294, 'xgb_reg_lambda': 5.984257319344325, 'xgb_reg_alpha': 2.809212645023934}",141
+tune_catboost,catboost,0.7407504049925525,0.012457345288895662,"{'cat_iterations': 490, 'cat_lr': 0.27738521375995445, 'cat_depth': 4, 'cat_l2_leaf_reg': 3.6769840158580154, 'cat_bagging_temp': 0.06592686017953264, 'cat_random_strength': 2.8555640576128773, 'cat_border_count': 251}",44

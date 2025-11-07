@@ -1,0 +1,11 @@
+{
+  "study": "tune_lda",
+  "model": "lda",
+  "best_recall_weighted": 0.7509964072727326,
+  "recall_std": 0.013111689693100975,
+  "params": {
+    "lda_use_shrinkage": true,
+    "lda_shrinkage": 0.5214831967288259
+  },
+  "n_trials": 24
+}

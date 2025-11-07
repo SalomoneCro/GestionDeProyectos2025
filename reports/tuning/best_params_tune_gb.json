@@ -1,0 +1,15 @@
+{
+  "study": "tune_gb",
+  "model": "gb",
+  "best_recall_weighted": 0.6982542112289692,
+  "recall_std": 0.015062633470148606,
+  "params": {
+    "gb_n_estimators": 579,
+    "gb_lr": 0.07281181199807128,
+    "gb_max_depth": 2,
+    "gb_min_samples_leaf": 8,
+    "gb_subsample": 0.7967587545117252,
+    "gb_max_features": 1.0
+  },
+  "n_trials": 24
+}

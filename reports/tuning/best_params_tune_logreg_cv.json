@@ -1,0 +1,11 @@
+{
+  "study": "tune_logreg_cv",
+  "model": "logreg_cv",
+  "best_recall_weighted": 0.7554994070856544,
+  "recall_std": 0.005291132329060972,
+  "params": {
+    "logregcv_n_cs": 6,
+    "logregcv_class_weight": null
+  },
+  "n_trials": 25
+}

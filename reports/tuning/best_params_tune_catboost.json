@@ -1,0 +1,16 @@
+{
+  "study": "tune_catboost",
+  "model": "catboost",
+  "best_recall_weighted": 0.7407504049925525,
+  "recall_std": 0.012457345288895662,
+  "params": {
+    "cat_iterations": 490,
+    "cat_lr": 0.27738521375995445,
+    "cat_depth": 4,
+    "cat_l2_leaf_reg": 3.6769840158580154,
+    "cat_bagging_temp": 0.06592686017953264,
+    "cat_random_strength": 2.8555640576128773,
+    "cat_border_count": 251
+  },
+  "n_trials": 44
+}

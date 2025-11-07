@@ -1,0 +1,11 @@
+{
+  "study": "tune_linear_svc",
+  "model": "linear_svc",
+  "best_recall_weighted": 0.6767492097912035,
+  "recall_std": 0.0027373635685183327,
+  "params": {
+    "linsvc_C": 8.758022187086494,
+    "linsvc_class_weight": "balanced"
+  },
+  "n_trials": 305
+}

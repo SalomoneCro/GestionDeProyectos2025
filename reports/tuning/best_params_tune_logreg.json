@@ -1,0 +1,11 @@
+{
+  "study": "tune_logreg",
+  "model": "logreg",
+  "best_recall_weighted": 0.7559991572105921,
+  "recall_std": 0.002943505252866455,
+  "params": {
+    "logreg_C": 243.12954332073033,
+    "logreg_class_weight": null
+  },
+  "n_trials": 14
+}
