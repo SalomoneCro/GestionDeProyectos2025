@@ -1,18 +1,18 @@
 {
   "study": "tune_xgb",
   "model": "xgb",
-  "best_recall_weighted": 0.7090068994010122,
-  "recall_std": 0.02413746329608991,
+  "best_recall_weighted": 0.7877525978196198,
+  "recall_std": 0.014408671219581537,
   "params": {
-    "xgb_n_estimators": 554,
-    "xgb_lr": 0.2126806177041667,
-    "xgb_max_depth": 3,
-    "xgb_min_child_weight": 5.666313691995679,
-    "xgb_gamma": 0.010612600723117704,
-    "xgb_subsample": 0.7901374044902558,
-    "xgb_colsample_bytree": 0.9553589966573294,
-    "xgb_reg_lambda": 5.984257319344325,
-    "xgb_reg_alpha": 2.809212645023934
+    "xgb_n_estimators": 7976,
+    "xgb_lr": 0.48132578560291905,
+    "xgb_max_depth": 1,
+    "xgb_min_child_weight": 1.1068147985302066,
+    "xgb_gamma": 0.02637638445351531,
+    "xgb_subsample": 0.9996125283562703,
+    "xgb_colsample_bytree": 0.7148937314170194,
+    "xgb_reg_lambda": 0.007894121197231548,
+    "xgb_reg_alpha": 2.031530326241857
   },
-  "n_trials": 141
+  "n_trials": 1061
 }
