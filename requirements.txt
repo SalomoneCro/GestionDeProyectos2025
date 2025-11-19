@@ -1,14 +1,11 @@
-# --- Data processing ---
-pandas>=2.0,<3.0
-pyarrow>=14,<18
-numpy>=1.24,<2.0
+# Dependencias principales de Python
+pandas
+numpy
+scikit-learn
+joblib
 
-# --- Machine Learning ---
-scikit-learn>=1.4,<2.0
+# Clasificadores
+xgboost
 
-# --- Visualization ---
-matplotlib>=3.8,<4.0
-seaborn>=0.13,<1.0
-
-# --- Kaggle / Data fetching ---
-kagglehub>=0.2,<1.0
+# Utilidades de Parquet (necesario para la conversión)
+pyarrow
