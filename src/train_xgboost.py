@@ -10,13 +10,9 @@ from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 import xgboost as xgb
 
-# ====================================================================
-# CONFIGURACION Y PARAMETROS
-# ====================================================================
-
 # Rutas
 BASE_DIR = Path(__file__).resolve().parent
-DATA_PATH = BASE_DIR / "sel_all.csv"  # ¡Asegurate de que este archivo exista!
+DATA_PATH = BASE_DIR / "data.csv"
 MODEL_OUTPUT_PATH = BASE_DIR / "xgboost_best_pipeline.pkl"
 
 # Constantes de Entrenamiento
@@ -36,10 +32,6 @@ BEST_PARAMS = {
     "reg_alpha": 2.031530326241857
 }
 
-# ====================================================================
-# FUNCIONES DE PREPROCESAMIENTO
-# ====================================================================
-
 def inferir_features(data, target_col):
     """Identifica las columnas numericas y categoricas."""
     all_features = [col for col in data.columns if col != target_col]
@@ -53,7 +45,7 @@ def crear_preprocesador(num_features, cat_features):
     # 1. Pipeline para características numéricas: Imputación por mediana y Normalización (StandardScaler)
     numeric_transformer = Pipeline(steps=[
         ('imputer', SimpleImputer(strategy='median')),
-        ('scaler', StandardScaler()) # <-- AQUI SE APLICA LA NORMALIZACION
+        ('scaler', StandardScaler())
     ])
 
     # 2. Pipeline para características categóricas: Imputación por moda y One-Hot Encoding
@@ -71,19 +63,15 @@ def crear_preprocesador(num_features, cat_features):
     )
     return preprocessor
 
-# ====================================================================
-# EJECUCION PRINCIPAL
-# ====================================================================
-
 def main_train():
     print("Iniciando entrenamiento de XGBoost con Normalización...")
     
     # 1. Carga de Datos y Preparación
     try:
         data = pd.read_csv(DATA_PATH)
-        print(f"✅ Datos cargados: {len(data)} filas.")
+        print(f"Datos cargados: {len(data)} filas.")
     except FileNotFoundError:
-        print(f"❌ Error: Archivo de datos no encontrado en {DATA_PATH}.")
+        print(f"Error: Archivo de datos no encontrado en {DATA_PATH}.")
         return
 
     # Inferencia de features
@@ -111,18 +99,18 @@ def main_train():
         ))
     ])
     
-    print("🚀 Entrenando Pipeline (Preprocesador + Modelo)...")
+    print("Entrenando Pipeline (Preprocesador + Modelo)...")
     # Al entrenar la pipeline, el preprocesador se ajusta a X_processed, y el scaler (normalizador) 
     # aprenderá la media y desviación estándar de los datos.
     full_pipeline.fit(X_processed, y_encoded)
-    print("✅ Entrenamiento completado.")
+    print("Entrenamiento completado.")
     
     # 3. Guardar la Pipeline (Contiene el preprocesador ajustado y el modelo entrenado)
     try:
         joblib.dump(full_pipeline, MODEL_OUTPUT_PATH)
-        print(f"\n✨ Pipeline completa guardada en: {MODEL_OUTPUT_PATH.name}")
+        print(f"\nPipeline completa guardada en: {MODEL_OUTPUT_PATH.name}")
     except Exception as e:
-        print(f"❌ Error al guardar la pipeline: {e}")
+        print(f"Error al guardar la pipeline: {e}")
 
 if __name__ == '__main__':
     main_train()

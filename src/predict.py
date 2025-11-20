@@ -1,34 +1,23 @@
-# predict_single_row.py
-
 import pandas as pd
 import joblib
 from pathlib import Path
 import numpy as np
 
-# ====================================================================
-# CONFIGURACION Y CARGA
-# ====================================================================
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "xgboost_best_pipeline.pkl"
 
-MODEL_PATH = Path("xgboost_best_pipeline.pkl") # Ruta de la pipeline entrenada
-
-# --- DEFINICIÓN DE CLASES DE RIESGO ---
-# NOTA CRÍTICA: Este orden DEBE coincidir con el orden alfabético que LabelEncoder utilizó
-# al codificar 'Risk_Level' durante el entrenamiento, que típicamente es:
-# [0] = Critical, [1] = High, [2] = Low, [3] = Medium
 STRING_RISK_CLASSES = np.array(['Critical', 'High', 'Low', 'Medium'])
-
 
 def cargar_pipeline(path):
     """Carga la pipeline completa."""
     try:
         pipeline = joblib.load(path)
-        print(f"✅ Pipeline cargada exitosamente desde: {path}")
         return pipeline
     except FileNotFoundError:
-        print(f"❌ Error: Archivo de modelo no encontrado en {path}. Ejecuta train_xgboost.py primero.")
+        print(f"Error: Archivo de modelo no encontrado en {path}. Ejecuta train_xgboost.py primero.")
         return None
     except Exception as e:
-        print(f"❌ Error al cargar la pipeline: {e}")
+        print(f"Error al cargar la pipeline: {e}")
         return None
 
 def main_predict():
@@ -41,17 +30,13 @@ def main_predict():
     try:
         numerical_classes = full_pipeline.named_steps['classifier'].classes_
         if len(numerical_classes) != len(STRING_RISK_CLASSES):
-            print(f"❌ ERROR DE CLASES: El modelo espera {len(numerical_classes)} clases numéricas, pero se definieron {len(STRING_RISK_CLASSES)} etiquetas de riesgo en texto.")
+            print(f"ERROR DE CLASES: El modelo espera {len(numerical_classes)} clases numéricas, pero se definieron {len(STRING_RISK_CLASSES)} etiquetas de riesgo en texto.")
             return
     except Exception:
-        print("❌ ERROR: No se pudo verificar el número de clases numéricas del modelo.")
+        print("ERROR: No se pudo verificar el número de clases numéricas del modelo.")
         return
-
-
-    print("\n--- ¡MOMENTO DE LA PREDICCIÓN! ---")
-    print("Ingresa la fila de datos para el nuevo proyecto.")
     
-    # --- FILA DE ENTRADA DE DATOS (EJEMPLO DE LA PROFESORA) ---
+
     
     # Usamos dato_1 como ejemplo predeterminado.
     dato_1 = {
@@ -160,7 +145,6 @@ def main_predict():
 
     # Crear el DataFrame de una sola fila
     new_data = pd.DataFrame([dato_2])
-    # new_data = pd.DataFrame([dato_2]) # Descomentar para probar la segunda fila
 
     # 1. Predicción
     try:
@@ -171,7 +155,7 @@ def main_predict():
         predicted_risk = STRING_RISK_CLASSES[prediction_encoded[0]]
         
         print("\n--- RESULTADO DE LA CLASIFICACIÓN ---")
-        print(f"Riesgo Previsto: **{predicted_risk}**")
+        print(f"Riesgo Previsto: {predicted_risk}")
         print("Probabilidades por Clase:")
         
         # 3. Mostrar las probabilidades mapeadas (usando la lista de strings)
@@ -180,7 +164,7 @@ def main_predict():
             print(f"  - {class_label}: {prob:.4f}")
 
     except Exception as e:
-        print(f"❌ Error durante la predicción: {e}")
+        print(f"Error durante la predicción: {e}")
         print("\nVERIFICA: Los nombres de las columnas en el diccionario de entrada deben coincidir EXACTAMENTE con las features de entrenamiento.")
 
 if __name__ == '__main__':
