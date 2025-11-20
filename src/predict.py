@@ -143,8 +143,63 @@ def main_predict():
         'Seasonal_Risk_Factor': 1.0
     }
 
+    dato_cliente = {
+        # --- FEATURES NUMÉRICAS (Mapeadas del Doc) ---
+        'Team_Size': 10,   
+        'Project_Budget_USD': 10000.0,
+        'Estimated_Timeline_Months': 24,   
+        'Complexity_Score': 5,   
+        'Stakeholder_Count': 4,   
+        'Past_Similar_Projects': 1,   
+        'External_Dependencies_Count': 3,   
+        'Change_Request_Frequency': 3,   
+        'Team_Turnover_Rate': 0.2,   
+        'Vendor_Reliability_Score': 0.9,   
+        'Historical_Risk_Incidents': 2,
+        'Communication_Frequency': 4,   
+        'Geographical_Distribution': 2,   
+        'Schedule_Pressure': 1.0,   
+        'Budget_Utilization_Rate': 0.5, 
+        'Market_Volatility': 0.3,   
+        'Integration_Complexity': 0,   
+        'Resource_Availability': 0.5,
+        'Organizational_Change_Frequency': 1, 
+        'Cross_Functional_Dependencies': 4,   
+        'Previous_Delivery_Success_Rate': 0.5,   
+        'Technical_Debt_Level': 0.7,   
+        'Project_Start_Month': 9,   
+        'Current_Phase_Duration_Months': 14,  
+        'Seasonal_Risk_Factor': 1.3,  
+
+        # --- FEATURES CATEGÓRICAS ---
+        'Project_Type': 'R&D',
+        'Methodology_Used': 'Hybrid',
+        'Team_Experience_Level': 'Mixed',
+        'Project_Phase': 'Ejecución',
+        'Requirement_Stability': 'Moderado',
+        'Regulatory_Compliance_Level': 'Crítico',
+        'Technology_Familiarity': 'Familiarizados',
+        'Stakeholder_Engagement_Level': 'Medio',
+        'Executive_Sponsorship': 'Alto/Fuerte',
+        'Funding_Source': 'Gobierno',
+        'Priority_Level': 'Alto',
+        'Project_Manager_Experience': 'Mid-level PM',
+        'Org_Process_Maturity': 'Gestionado',
+        'Data_Security_Requirements': 'Medio',
+        'Key_Stakeholder_Availability': 'Limitado',
+        'Tech_Environment_Stability': 'Moderna/ Estable',
+        'Contract_Type': 'Precio fijo',
+        'Resource_Contention_Level': 'Medio',
+        'Industry_Volatility': 'Moderada',
+        'Client_Experience_Level': 'Ocasional',
+        'Change_Control_Maturity': 'Avanzado',
+        'Risk_Management_Maturity': 'Avanzado',
+        'Team_Colocation': 'Hibrido',
+        'Documentation_Quality': 'Buena'
+    }
+
     # Crear el DataFrame de una sola fila
-    new_data = pd.DataFrame([dato_2])
+    new_data = pd.DataFrame([dato_cliente])
 
     # 1. Predicción
     try:
